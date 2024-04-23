@@ -58,9 +58,10 @@ const sampleDataForPhotoList = [
   },
 ];
 
-const photoArrayLength = sampleDataForPhotoList.length;
-const emptyPhotosArray = new Array(photoArrayLength).fill(null);
-const fullPhotoArray = emptyPhotosArray.map((_, index) => <PhotoListItem key={index} data={sampleDataForPhotoList[index]}/>);
+// const photoArrayLength = sampleDataForPhotoList.length;
+// const emptyPhotosArray = new Array(photoArrayLength).fill(null);
+// const fullPhotoArray = emptyPhotosArray.map((_, index) => <PhotoListItem key={index} data={sampleDataForPhotoList[index]}/>);
+const fullPhotoArray = sampleDataForPhotoList.map((photo, index) => <PhotoListItem key={index} data={photo}/>);
 
 const PhotoList = () => {
   return (
