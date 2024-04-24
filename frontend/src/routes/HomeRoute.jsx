@@ -16,19 +16,12 @@ const HomeRoute = ({ photos, topics }) => {
     setFavorites(favorites.filter(id => id !== photoID));
   };
 
-  let isFavPhotoExist = false;
-  if(favorites.length > 0) {
-    isFavPhotoExist = true;
-  } else {
-    isFavPhotoExist = false;
-  };
-
   console.log(favorites); // prints two arrays for some reason.
 
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} isFavPhotoExist={isFavPhotoExist}/>
-      <PhotoList photos={photos} setFavorite={setFavorite} removeFavorite={removeFavorite}/>
+      <TopNavigation topics={topics} favorites={favorites}/>
+      <PhotoList photos={photos} favorites={favorites} setFavorite={setFavorite} removeFavorite={removeFavorite}/>
     </div>
   );
 };

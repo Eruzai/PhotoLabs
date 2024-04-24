@@ -1,11 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
-function PhotoFavButton({ setFavorite, removeFavorite, photoID }) {
-  const [selected, setSelected] = useState(false);
+function PhotoFavButton({ favorites, setFavorite, removeFavorite, photoID }) {
+  let selected = false
+  favorites.includes(photoID) ? selected = true : selected = false;
+
   const toggleFav = () => {
-    setSelected(selected ? false : true);
     selected ? removeFavorite(photoID) : setFavorite(photoID);
   }
 
