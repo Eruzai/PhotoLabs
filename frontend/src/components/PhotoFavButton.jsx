@@ -9,8 +9,8 @@ function PhotoFavButton() {
 
   return (
     <div className="photo-list__fav-icon">
-      <div className="photo-list__fav-icon-svg">
-        <FavIcon toggleFav={toggleFav} selected={selected}/>
+      <div onClick={toggleFav} className="photo-list__fav-icon-svg">
+        <FavIcon selected={selected}/>
       </div>
     </div>
   );
