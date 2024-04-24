@@ -7,11 +7,11 @@ import './App.scss';
 
 const App = () => {
   const [viewModal, setViewModal] = useState(false);
-  const openModal = () => setViewModal(true);
+  const setModalTrue = () => setViewModal(true);
 
   return (
     <div className="App">
-      <HomeRoute openModal={openModal} photos={photos} topics={topics}/>
+      <HomeRoute setModalTrue={setModalTrue} photos={photos} topics={topics}/>
       {viewModal && <PhotoDetailsModal />}
     </div>
   );
