@@ -1,22 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = ({ openModal, photos, topics }) => {
-  const [favorites, setFavorites] = useState([]);
-
-  const setFavorite = (photoID) => {
-    if (!favorites.includes(photoID)) {
-      setFavorites([...favorites, photoID]);
-    }
-  };
-
-  const removeFavorite = (photoID) => {
-    setFavorites(favorites.filter(id => id !== photoID));
-  };
-
-  console.log(favorites); // prints two arrays for some reason.
+const HomeRoute = ({ openModal, photos, topics, favorites, setFavorite, removeFavorite}) => {
 
   return (
     <div className="home-route">
