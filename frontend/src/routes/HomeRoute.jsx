@@ -3,7 +3,7 @@ import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 import '../styles/HomeRoute.scss';
 
-const HomeRoute = ({ setModalTrue, photos, topics }) => {
+const HomeRoute = ({ openModal, photos, topics }) => {
   const [favorites, setFavorites] = useState([]);
 
   const setFavorite = (photoID) => {
@@ -21,7 +21,7 @@ const HomeRoute = ({ setModalTrue, photos, topics }) => {
   return (
     <div className="home-route">
       <TopNavigation topics={topics} favorites={favorites}/>
-      <PhotoList photos={photos} setModalTrue={setModalTrue} favorites={favorites} setFavorite={setFavorite} removeFavorite={removeFavorite}/>
+      <PhotoList photos={photos} openModal={openModal} favorites={favorites} setFavorite={setFavorite} removeFavorite={removeFavorite}/>
     </div>
   );
 };

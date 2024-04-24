@@ -2,16 +2,16 @@ import React from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = (props) => {
+const PhotoListItem = ({ data, openModal, favorites, setFavorite, removeFavorite }) => {
   return (
     <div className="photo-list__item">
-      <PhotoFavButton photoID={props.data.id} favorites={props.favorites} setFavorite={props.setFavorite} removeFavorite={props.removeFavorite}/>
-      <img onClick={props.setModalTrue} className="photo-list__image" src={props.data.urls.regular} alt="photograph" />
+      <PhotoFavButton photoID={data.id} favorites={favorites} setFavorite={setFavorite} removeFavorite={removeFavorite}/>
+      <img onClick={() => openModal(data)} className="photo-list__image" src={data.urls.regular} alt="photograph" />
       <div className="photo-list__user-details">
-        <img className="photo-list__user-profile" src={props.data.user.profile} alt="profile image" />
+        <img className="photo-list__user-profile" src={data.user.profile} alt="profile image" />
         <div className="photo-list__user-info">
-          <div>{props.data.user.username}</div>
-          <div className="photo-list__user-location">{props.data.location.city}, {props.data.location.country}</div>
+          <div>{data.user.username}</div>
+          <div className="photo-list__user-location">{data.location.city}, {data.location.country}</div>
         </div>
       </div>
     </div>
