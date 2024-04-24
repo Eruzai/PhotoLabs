@@ -4,7 +4,7 @@ import PhotoFavButton from 'components/PhotoFavButton';
 import PhotoList from 'components/PhotoList';
 import '../styles/PhotoDetailsModal.scss'
 
-const PhotoDetailsModal = ({ closeModal, photoData, favorites, setFavorite, removeFavorite }) => {
+const PhotoDetailsModal = ({ closeModal, photoData, favorites, toggleFavorite }) => {
   console.log(photoData);
   const similarPhotosArray = Object.values(photoData.similar_photos)
   console.log(similarPhotosArray);
@@ -14,9 +14,9 @@ const PhotoDetailsModal = ({ closeModal, photoData, favorites, setFavorite, remo
       <button onClick={closeModal} className="photo-details-modal__close-button">
         <img src={closeSymbol} alt="close symbol" />
       </button>
-      <PhotoFavButton photoID={photoData.id} favorites={favorites} setFavorite={setFavorite} removeFavorite={removeFavorite}/>
+      <PhotoFavButton photoID={photoData.id} favorites={favorites} toggleFavorite={toggleFavorite}/>
       <img className="photo-details-modal__image" src={photoData.urls.full} alt="full size image"/>
-      <header className=".photo-details-modal__header">
+      <header className="photo-details-modal__header">
         <div className="photo-details-modal__photographer-details">
           <img className="photo-details-modal__photographer-profile" src={photoData.user.profile} alt="profile image"/>
           <div className="photo-details-modal__photographer-info">
@@ -25,7 +25,7 @@ const PhotoDetailsModal = ({ closeModal, photoData, favorites, setFavorite, remo
           </div>
         </div>
       </header>
-      <PhotoList photos={similarPhotosArray} favorites={favorites} setFavorite={setFavorite} removeFavorite={removeFavorite}/>
+      <PhotoList photos={similarPhotosArray} favorites={favorites} toggleFavorite={toggleFavorite}/>
     </div>
   )
 };
