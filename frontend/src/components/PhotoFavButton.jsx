@@ -3,8 +3,7 @@ import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton({ favorites, setFavorite, removeFavorite, photoID }) {
-  let selected = false
-  favorites.includes(photoID) ? selected = true : selected = false;
+  const selected = favorites.includes(photoID)
 
   const toggleFav = () => {
     selected ? removeFavorite(photoID) : setFavorite(photoID);
