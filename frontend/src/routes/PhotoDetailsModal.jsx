@@ -14,18 +14,25 @@ const PhotoDetailsModal = ({ closeModal, photoData, favorites, toggleFavorite })
       <button onClick={closeModal} className="photo-details-modal__close-button">
         <img src={closeSymbol} alt="close symbol" />
       </button>
-      <PhotoFavButton photoID={photoData.id} favorites={favorites} toggleFavorite={toggleFavorite}/>
-      <img className="photo-details-modal__image" src={photoData.urls.full} alt="full size image"/>
-      <header className="photo-details-modal__header">
+      <div className="photo-details-modal__images">
+        <PhotoFavButton photoID={photoData.id} favorites={favorites} toggleFavorite={toggleFavorite}/>
+        <img className="photo-details-modal__image" src={photoData.urls.full} alt="full size image"/>
         <div className="photo-details-modal__photographer-details">
           <img className="photo-details-modal__photographer-profile" src={photoData.user.profile} alt="profile image"/>
           <div className="photo-details-modal__photographer-info">
-            <div>{photoData.user.username}</div>
-            <div className="photo-details-modal__photographer-location">{photoData.location.city}, {photoData.location.country}</div>
+            <div>
+              {photoData.user.username}
+            </div>
+            <div className="photo-details-modal__photographer-location">
+              {photoData.location.city}, {photoData.location.country}
+            </div>
           </div>
         </div>
-      </header>
-      <PhotoList photos={similarPhotosArray} favorites={favorites} toggleFavorite={toggleFavorite}/>
+        <header className="photo-details-modal__header">
+          Similar Photos
+        </header>
+        <PhotoList photos={similarPhotosArray} favorites={favorites} toggleFavorite={toggleFavorite}/>
+      </div>
     </div>
   )
 };
