@@ -5,9 +5,7 @@ import PhotoList from 'components/PhotoList';
 import '../styles/PhotoDetailsModal.scss'
 
 const PhotoDetailsModal = ({ closeModal, photoData, favorites, toggleFavorite }) => {
-  console.log(photoData);
   const similarPhotosArray = Object.values(photoData.similar_photos)
-  console.log(similarPhotosArray);
 
   return (
     <div className="photo-details-modal">
