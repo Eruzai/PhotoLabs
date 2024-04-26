@@ -1,13 +1,14 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS'
 };
 
-const INITIAL_STATE = { favorites: [], viewModal: false };
+const INITIAL_STATE = { favorites: [], viewModal: false, photoData: [], topicData: [] };
 
 function reducer(state, action) {
   switch (action.type) {
@@ -19,6 +20,10 @@ function reducer(state, action) {
       return {...state, viewModal: action.payload};
     case 'CLOSE_PHOTO_DETAILS':
       return {...state, viewModal: null};
+    case 'SET_PHOTO_DATA':
+      return {...state, photoData: action.payload};
+    case 'SET_TOPIC_DATA':
+      return {...state, topicData: action.payload};
 
     default:
       throw new Error(
@@ -30,10 +35,22 @@ function reducer(state, action) {
 const useApplicationData = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
-  const onPhotoSelect = (data) => dispatch({ type: 'DISPLAY_PHOTO_DETAILS', payload: data });
-  const onClosePhotoDetailsModal = () => dispatch({ type: 'CLOSE_PHOTO_DETAILS' });
+  useEffect(() => {
+    fetch('/api/photos')
+    .then(res => res.json())
+    .then(data => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data}))
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/topics')
+    .then(res => res.json())
+    .then(data => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}))
+  }, [])
+
+  const onPhotoSelect = (data) => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: data });
+  const onClosePhotoDetailsModal = () => dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS });
   
-  const updateToFavPhotoIds = (photoID) => dispatch({ type: !state.favorites.includes(photoID) ? 'FAV_PHOTO_ADDED' : 'FAV_PHOTO_REMOVED', payload: photoID });
+  const updateToFavPhotoIds = (photoID) => dispatch({ type: !state.favorites.includes(photoID) ? ACTIONS.FAV_PHOTO_ADDED : ACTIONS.FAV_PHOTO_REMOVED, payload: photoID });
 
   return {
     state,
