@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute openModal={onPhotoSelect} photos={state.photoData} topics={state.topicData} favorites={state.favorites} toggleFavorite={updateToFavPhotoIds}/>
+      <HomeRoute loadTopic={onLoadTopic} openModal={onPhotoSelect} photos={state.photoData} topics={state.topicData} favorites={state.favorites} toggleFavorite={updateToFavPhotoIds}/>
       {state.viewModal && <PhotoDetailsModal photoData={state.viewModal} closeModal={onClosePhotoDetailsModal} favorites={state.favorites} toggleFavorite={updateToFavPhotoIds}/>}
     </div>
   );

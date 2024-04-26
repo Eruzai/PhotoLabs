@@ -2,11 +2,11 @@ import React from "react";
 
 import "../styles/TopicListItem.scss";
 
-const TopicListItem = (props) => {
+const TopicListItem = ({ id, loadTopic, data }) => {
   return (
-    <div className="topic-list__item">
+    <div onClick={() => loadTopic(id)} className="topic-list__item">
       <span>
-        {props.data.title}
+        {data.title}
       </span>
     </div>
   );
