@@ -6,10 +6,11 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  GET_FAVORITES: 'GET_FAVORITES'
 };
 
-const INITIAL_STATE = { favorites: [], viewModal: false, photoData: [], topicData: [] };
+const INITIAL_STATE = { favorites: [], viewModal: false, photoData: [], topicData: []};
 
 function reducer(state, action) {
   switch (action.type) {
@@ -23,6 +24,7 @@ function reducer(state, action) {
       return {...state, viewModal: null};
     case 'SET_PHOTO_DATA':
     case 'GET_PHOTOS_BY_TOPICS':
+    case 'GET_FAVORITES':
       return {...state, photoData: action.payload};
     case 'SET_TOPIC_DATA':
       return {...state, topicData: action.payload};
@@ -58,14 +60,20 @@ const useApplicationData = () => {
   const onPhotoSelect = (data) => dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, payload: data });
   const onClosePhotoDetailsModal = () => dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS });
   
-  const updateToFavPhotoIds = (photoID) => dispatch({ type: !state.favorites.includes(photoID) ? ACTIONS.FAV_PHOTO_ADDED : ACTIONS.FAV_PHOTO_REMOVED, payload: photoID });
+  const updateToFavPhotoIds = (photo) => dispatch({ type: !state.favorites.map((photo) => photo.id).includes(photo.id) ? ACTIONS.FAV_PHOTO_ADDED : ACTIONS.FAV_PHOTO_REMOVED, payload: photo });
+
+  const photoArray = [];
+  state.photoData.map((photo) => state.favorites.includes(photo.id) && photoArray.push(photo));
+
+  const showFavorites = () => dispatch({ type: ACTIONS.GET_FAVORITES, payload: state.favorites });
 
   return {
     state,
     updateToFavPhotoIds,
     onPhotoSelect,
     onClosePhotoDetailsModal,
-    onLoadTopic
+    onLoadTopic,
+    showFavorites
   };
 };
 
