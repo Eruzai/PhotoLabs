@@ -62,9 +62,6 @@ const useApplicationData = () => {
   
   const updateToFavPhotoIds = (photo) => dispatch({ type: !state.favorites.map((photo) => photo.id).includes(photo.id) ? ACTIONS.FAV_PHOTO_ADDED : ACTIONS.FAV_PHOTO_REMOVED, payload: photo });
 
-  const photoArray = [];
-  state.photoData.map((photo) => state.favorites.includes(photo.id) && photoArray.push(photo));
-
   const showFavorites = () => dispatch({ type: ACTIONS.GET_FAVORITES, payload: state.favorites });
 
   return {
