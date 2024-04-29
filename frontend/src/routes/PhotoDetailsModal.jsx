@@ -13,7 +13,7 @@ const PhotoDetailsModal = ({ closeModal, photoData, favorites, toggleFavorite })
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <div className="photo-details-modal__images">
-        <PhotoFavButton photoID={photoData.id} favorites={favorites} toggleFavorite={toggleFavorite}/>
+        <PhotoFavButton photo={photoData} favorites={favorites} toggleFavorite={toggleFavorite}/>
         <img className="photo-details-modal__image" src={photoData.urls.full} alt="full size image"/>
         <div className="photo-details-modal__photographer-details">
           <img className="photo-details-modal__photographer-profile" src={photoData.user.profile} alt="profile image"/>
