@@ -11,7 +11,7 @@ A Lighthouse Labs project: a web app built using React to view and interact with
 ## Click a photo to view details!
 !["photo details"](./docs/Modal.png)
 
-## Setup
+# Setup
 
 1. Install dependencies with `npm install` in each respective `/frontend` and `/backend`.
 2. Read and follow directions in the backend [README](./backend/README.md).
